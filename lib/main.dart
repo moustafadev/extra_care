@@ -44,10 +44,10 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   // Set the background messaging handler early on, as a named top-level function
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   /// Create an Android Notification Channel.
   ///
@@ -60,11 +60,11 @@ Future<void> main() async {
 
   /// Update the iOS foreground notification presentation options to allow
   /// heads up notifications.
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
   LoginModel userModel = await Reusable.getUserModel();
   globals.userModel = userModel;
   HttpOverrides.global = new MyHttpOverrides();
@@ -129,52 +129,52 @@ class _MyAppState extends State<MyApp> {
 
   @override
   initState() {
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage message) {
-      if (message != null) {
-        // Navigator.pushNamed(context, '/message',
-        //     arguments: MessageArguments(message, true));
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => NotificationScreen()));
-      }
-    });
+    // FirebaseMessaging.instance
+    //     .getInitialMessage()
+    //     .then((RemoteMessage message) {
+    //   if (message != null) {
+    //     // Navigator.pushNamed(context, '/message',
+    //     //     arguments: MessageArguments(message, true));
+    //     Navigator.of(context).push(
+    //         MaterialPageRoute(builder: (context) => NotificationScreen()));
+    //   }
+    // });
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification notification = message.notification;
-      AndroidNotification android = message.notification?.android;
-
-      if (notification != null && android != null) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channel.description,
-                //      one that already exists in example app.
-                icon: 'launch_background',
-              ),
-            ));
-      }
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
-      // Navigator.pushNamed(context, '/message',
-      //     arguments: MessageArguments(message, true));
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => NotificationScreen()));
-    });
-    FirebaseMessaging.instance.getToken().then((String token) async {
-      assert(token != null);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('fcmToken', token);
-      setState(() {
-        print("Push Messaging token: $token");
-      });
-    });
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   RemoteNotification notification = message.notification;
+    //   AndroidNotification android = message.notification?.android;
+    //
+    //   if (notification != null && android != null) {
+    //     flutterLocalNotificationsPlugin.show(
+    //         notification.hashCode,
+    //         notification.title,
+    //         notification.body,
+    //         NotificationDetails(
+    //           android: AndroidNotificationDetails(
+    //             channel.id,
+    //             channel.name,
+    //             channel.description,
+    //             //      one that already exists in example app.
+    //             icon: 'launch_background',
+    //           ),
+    //         ));
+    //   }
+    // });
+    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    //   print('A new onMessageOpenedApp event was published!');
+    //   // Navigator.pushNamed(context, '/message',
+    //   //     arguments: MessageArguments(message, true));
+    //   Navigator.of(context)
+    //       .push(MaterialPageRoute(builder: (context) => NotificationScreen()));
+    // });
+    // FirebaseMessaging.instance.getToken().then((String token) async {
+    //   assert(token != null);
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   prefs.setString('fcmToken', token);
+    //   setState(() {
+    //     print("Push Messaging token: $token");
+    //   });
+    // });
     super.initState();
   }
 

@@ -66,17 +66,17 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
   void initState() {
     super.initState();
     getUser();
-    getInsec();
-    getCount();
-    getLists();
-    getCall();
-    getAds();
+    // getInsec();
+    // getCount();
+    // getLists();
+    // getCall();
+    // getAds();
     selectedCompany = null;
-    insurance().then((value) {
-      setState(() {
-        _insuranceModel = value;
-      });
-    });
+    // insurance().then((value) {
+    //   setState(() {
+    //     _insuranceModel = value;
+    //   });
+    // });
   }
 
   @override
@@ -84,29 +84,30 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
     Reusable.InitScreenDims(context);
     return SafeArea(
       child: Scaffold(
-          key: _scaffoldKey,
-          drawer: drawer(context),
-          body: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      appBar(context, _scaffoldKey, read),
-                      // check with flag if user is loged in or not to show its data or hide it.
-                      (name == true) ? userData() : Container(),
-                      // !isAllCategLoaded
-                      //     ? Reusable.showLoader(!isAllCategLoaded, height: 60.h)
-                      //     :
-                      ProductsLisWidget(),
-                      ImageWidget(),
-                      listOfButtons(),
-                    ],
-                  ),
+        key: _scaffoldKey,
+        drawer: drawer(context),
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    appBar(context, _scaffoldKey, read),
+                    // check with flag if user is loged in or not to show its data or hide it.
+                    (name == true) ? userData() : Container(),
+                    // !isAllCategLoaded
+                    //     ? Reusable.showLoader(!isAllCategLoaded, height: 60.h)
+                    //     :
+                    // ProductsLisWidget(),
+                    ImageWidget(),
+                    listOfButtons(),
+                  ],
                 ),
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -115,7 +116,8 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
     String languageCode = _pref.getString(Language_Code);
 
     var uri = Uri.parse(
-        'https://chromateck.com/laurus/api/v1/insurance/add?lang=$languageCode');
+      'https://chromateck.com/laurus/api/v1/insurance/add?lang=$languageCode',
+    );
 
     var request = new http.MultipartRequest("POST", uri);
     request.headers
@@ -164,12 +166,13 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
           children: [
             Expanded(
               child: Text(
-                  globals.userData['user']['name'] == null
-                      ? ''
-                      : globals.userData['user']['name'],
-                  //user.name == null ? '' : user.name,
-                  // "MAriam Younes",
-                  style: TextStyle(color: Colors.black)),
+                globals.userData['user']['name'] == null
+                    ? ''
+                    : globals.userData['user']['name'],
+                //user.name == null ? '' : user.name,
+                // "MAriam Younes",
+                style: TextStyle(color: Colors.black),
+              ),
               flex: 1,
             ),
             Column(
@@ -177,11 +180,13 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    points.toString() + "  " + getTranslated(context, 'points'),
-                    style: TextStyle(color: Colors.black, fontSize: 12.sp)),
+                  points.toString() + "  " + getTranslated(context, 'points'),
+                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                ),
                 Text(
-                    pointsCost.toString() + "  " + getTranslated(context, 'le'),
-                    style: TextStyle(color: Colors.black, fontSize: 12.sp)),
+                  pointsCost.toString() + "  " + getTranslated(context, 'le'),
+                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                ),
               ],
             ),
             // Column(
@@ -343,7 +348,8 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
                         style: BorderStyle.solid)),
                 child: Reusable.showLoader(loading)),
           )
-        : adminAcceptAds.isNotEmpty || adminAcceptAds.length == 0
+        : (adminAcceptAds?.isNotEmpty ?? false) ||
+                (adminAcceptAds?.length ?? -1) == 0
             ? Card(
                 elevation: 5,
                 child: Padding(
@@ -370,37 +376,36 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
                         ),
                       ),
                       Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 150,
-                          child: CarouselSlider(
-                            options: CarouselOptions(
-                              viewportFraction: 1,
-                              autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 3),
-                              // autoPlayAnimationDuration:
-                              //     Duration(milliseconds: 800),
-                              autoPlayCurve: Curves.fastOutSlowIn,
-                              enlargeCenterPage: true,
-                              scrollDirection: Axis.horizontal,
-                            ),
-                            items: adminAcceptAds
-                                .map((item) => Container(
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ItemScreen(
-                                                          details: item)));
-                                        },
-                                        child: Center(
-                                            child:
-                                                Image.network(item['photo'])),
-                                      ),
-                                    ))
-                                .toList(),
-                          )),
+                        width: MediaQuery.of(context).size.width,
+                        height: 150,
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            viewportFraction: 1,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 3),
+                            // autoPlayAnimationDuration:
+                            //     Duration(milliseconds: 800),
+                            autoPlayCurve: Curves.fastOutSlowIn,
+                            enlargeCenterPage: true,
+                            scrollDirection: Axis.horizontal,
+                          ),
+                          items: adminAcceptAds
+                              .map((item) => Container(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ItemScreen(details: item)));
+                                      },
+                                      child: Center(
+                                          child: Image.network(item['photo'])),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -408,10 +413,12 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
             : Padding(
                 padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 8.h),
                 child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 200,
-                    child:
-                        Reusable.noData(msg: getTranslated(context, 'noData'))),
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  child: Reusable.noData(
+                    msg: getTranslated(context, 'noData'),
+                  ),
+                ),
               );
   }
 
@@ -1129,15 +1136,15 @@ class HomeBodyAfterRegistrationState extends State<HomeBodyAfterRegistration> {
     );
   }
 
-  Future<InsuranceModel> insurance() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String languageCode = prefs.getString(Language_Code);
-    Reusable.showLoading(context);
-    http.Response response = await http.get(
-      Uri.parse(
-          'https://chromateck.com/laurus/api/v1/home?type=insurance_companies&response_type=all&lang=$languageCode'),
-    );
-    Reusable.dismissLoading();
-    return new InsuranceModel.fromJson(json.decode(response.body));
-  }
+  // Future<InsuranceModel> insurance() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String languageCode = prefs.getString(Language_Code);
+  //   Reusable.showLoading(context);
+  //   http.Response response = await http.get(
+  //     Uri.parse(
+  //         'https://chromateck.com/laurus/api/v1/home?type=insurance_companies&response_type=all&lang=$languageCode'),
+  //   );
+  //   Reusable.dismissLoading();
+  //   return new InsuranceModel.fromJson(json.decode(response.body));
+  // }
 }

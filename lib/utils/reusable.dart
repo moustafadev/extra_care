@@ -31,7 +31,7 @@ class Reusable {
         BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
-        Orientation.portrait,
+        // Orientation.portrait,
         designSize: Size(MediaQuery.of(context).size.width,
             MediaQuery.of(context).size.height),
         allowFontScaling: true);
@@ -201,7 +201,7 @@ class Reusable {
         BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
-        Orientation.portrait,
+        // Orientation.portrait,
         designSize: Size(width, height),
         allowFontScaling: true);
 

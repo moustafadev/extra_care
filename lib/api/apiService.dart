@@ -453,7 +453,7 @@ Future fetchCount() async {
       Uri.parse(baseUrl +
           'home?type=user_counts&response_type=all&lang$languageCode'),
       headers: {
-        'Authorization': 'Bearer ' + globals.userData['token'],
+        'Authorization': 'Bearer   ${globals.userData['token']}',
       });
   return response;
 }

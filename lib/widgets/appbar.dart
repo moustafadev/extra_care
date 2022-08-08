@@ -12,7 +12,9 @@ Widget appBar(BuildContext context, _scaffoldKey, read) {
   return Container(
     color: Constants.greenColor(),
     width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).orientation == Orientation.portrait?MediaQuery.of(context).size.height * .19 :MediaQuery.of(context).size.height * .43,
+    height: MediaQuery.of(context).orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.height * .2
+        : MediaQuery.of(context).size.height * .43,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -26,7 +28,11 @@ Widget appBar(BuildContext context, _scaffoldKey, read) {
         //       child: Icon(Icons.search, color: Colors.white)),
         // ),
         Center(
-          child: Image(image: AssetImage('assets/images/logo.png'),color: Colors.white,height: 80,),
+          child: Image(
+            image: AssetImage('assets/images/logo.png'),
+            color: Colors.white,
+            height: 80,
+          ),
         ),
         //SizedBox(height: 10,),
         Padding(
@@ -36,7 +42,11 @@ Widget appBar(BuildContext context, _scaffoldKey, read) {
             decoration: BoxDecoration(color: Colors.white),
             child: Center(
               child: TextFormField(
-                decoration:InputDecoration(border: InputBorder.none,prefixIcon: Icon(Icons.search),hintText: 'What are you looking for?') ,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'What are you looking for?',
+                ),
               ),
             ),
           ),

@@ -28,7 +28,7 @@ class _BottomTabScreenState extends State<BottomTabScreen> {
   @override
   void initState() {
     super.initState();
-    getCount();
+    // getCount();
   }
 
   void onTabTapped(int index) {
@@ -106,7 +106,7 @@ class _BottomTabScreenState extends State<BottomTabScreen> {
                 // BottomNavigationBarItem(
                 //   icon: Icon(Icons.fitness_center),
                 //   // ignore: deprecated_member_use
-                //   title: Text(""),
+                //   label: "",
                 // ),
                 // BottomNavigationBarItem(
                 //   icon: Row(
@@ -120,7 +120,7 @@ class _BottomTabScreenState extends State<BottomTabScreen> {
                 //     ],
                 //   ),
                 //   // ignore: deprecated_member_use
-                //   title: Text(""),
+                //   label: "",
                 // ),
                 // BottomNavigationBarItem(
                 //   icon: ImageIcon(
@@ -129,7 +129,7 @@ class _BottomTabScreenState extends State<BottomTabScreen> {
                 //     color: Colors.redAccent,
                 //   ),
                 //   // ignore: deprecated_member_use
-                //   title: Text(""),
+                //   label: "",
                 // ),
                 BottomNavigationBarItem(
                   label: '',
