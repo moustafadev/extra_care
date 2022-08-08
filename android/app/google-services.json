@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815151741819",
+    "project_id": "laurus-7ffdc",
+    "storage_bucket": "laurus-7ffdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815151741819:android:7e9481d84eff29984d9bde",
+        "android_client_info": {
+          "package_name": "com.readyworx.extra_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815151741819-esqrac9gemdr8buo65eqp737injkhgq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_17l2yrtfDMZF7oHsYx45iVrEAdRmwmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815151741819-esqrac9gemdr8buo65eqp737injkhgq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
